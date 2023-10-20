@@ -8,7 +8,8 @@ const cors = require('cors');
 // to access image from public folder
 app.use(express.static('public'))
 //routes
-const authRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
+const authRoutes = require('./routes/auth');
 //environment variable or you can say constants
 env.config();
 mongoose.set('strictQuery', false);
@@ -33,6 +34,7 @@ app.use(function (req, res, next) {
 });
 app.use(express.json());
 app.use('/public', express.static(path.join(__dirname, 'uploads')));
+app.use('/api', userRoutes);
 app.use('/api', authRoutes);
 app.get("/", (req, res) => {
     res.send("<h1>home</h1>");

@@ -1,4 +1,5 @@
 const express = require('express');
+const router = express.Router();
 const { User } = require("../models/user");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
@@ -25,15 +26,15 @@ router.post("/login", async (req, res) => {
     } catch (error) {
         res.status(500).send({ message: "Internal Server Error" });
     }
-    console.log("login");
+    // console.log("login");
 });
 
-// const validate = (data) => {
-//     const schema = Joi.object({
-//         email: Joi.string().email().required().label("Email"),
-//         password: Joi.string().required().label("Password"),
-//     });
-//     return schema.validate(data);
-// };
-
+const validate = (data) => {
+    const schema = Joi.object({
+        email: Joi.string().email().required().label("Email"),
+        password: Joi.string().required().label("Password"),
+    });
+    return schema.validate(data);
+};
+// jklj
 module.exports = router;
